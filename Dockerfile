@@ -2,6 +2,8 @@ FROM golang:alpine AS builder
 # Install git.
 # Git is required for fetching the dependencies.
 RUN apk update && apk add --no-cache git
+
+
 COPY . /source
 WORKDIR /source
 ENV DATABASE_NAME=dbname
