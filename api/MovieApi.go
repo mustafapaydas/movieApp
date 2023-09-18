@@ -5,7 +5,7 @@ import (
 	"movieProject/service"
 )
 
-func GetMovieApi(group *gin.RouterGroup) {
+func getMovieApi(group *gin.RouterGroup) {
 	movie := group.Group("/movie")
 	movie.GET("/", service.Paginator)
 
