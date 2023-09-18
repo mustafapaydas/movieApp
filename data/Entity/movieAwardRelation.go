@@ -4,11 +4,11 @@ import "gorm.io/gorm"
 
 type MovieAwardRelation struct {
 	gorm.Model
-	MovieID uint
-	Movie   Movie
-	AwardID uint
-	Award   Award
-	year    int `gorm:"not null"`
+	MovieID uint  `json:"movieID"`
+	Movie   Movie `json:"movie"`
+	AwardID uint  `json:"awardID"`
+	Award   Award `json:"award"`
+	year    int   `gorm:"not null" json:"year"`
 }
 
 func (MovieAwardRelation) TableName() string {

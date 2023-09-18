@@ -31,7 +31,7 @@ func Create(c *gin.Context) {
 		return
 	}
 	if result := config.GetDB().Create(&movie); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
+		c.AbortWithError(http.StatusBadRequest, result.Error)
 		return
 	}
 	c.JSON(http.StatusCreated, &movie)
