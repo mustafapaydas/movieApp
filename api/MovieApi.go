@@ -8,6 +8,6 @@ import (
 func getMovieApi(group *gin.RouterGroup) {
 	movie := group.Group("/movie")
 	movie.GET("/", service.Paginator)
-	//movie.POST("/", service.)
+	movie.POST("/", service.Create)
 
 }

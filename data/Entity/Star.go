@@ -13,8 +13,8 @@ const (
 
 type Star struct {
 	gorm.Model
-	Name     string
-	LastName string
+	Name     string `gorm:"not null"`
+	LastName string `gorm:"not null"`
 	Gender   gender
 	Age      int
 	Movies   []Movie `gorm:"many2many:tbl_movie_star_relation"`

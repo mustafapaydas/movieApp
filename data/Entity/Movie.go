@@ -7,7 +7,7 @@ import (
 type Movie struct {
 	gorm.Model
 	Name                string `gorm:"column:name;not null"`
-	Year                int
+	Year                int    `gorm:"not null"`
 	Description         string
 	MovieAwardRelations []MovieAwardRelation
 	Stars               []Star `gorm:"many2many:tbl_movie_star_relation"`

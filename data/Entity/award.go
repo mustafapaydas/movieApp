@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Award struct {
 	gorm.Model
-	Name                string
+	Name                string `gorm:"not null"`
 	Institution         string
 	MovieAwardRelations []MovieAwardRelation
 }
