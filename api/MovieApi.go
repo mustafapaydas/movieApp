@@ -2,11 +2,11 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"movieProject/Service"
+	"movieProject/service"
 )
 
 func GetMovieApi(group *gin.RouterGroup) {
 	movie := group.Group("/movie")
-	movie.GET("/", Service.Paginator)
+	movie.GET("/", service.Paginator)
 
 }
