@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"movieProject/common/response"
 	"movieProject/config"
@@ -26,8 +25,7 @@ func Paginator(c *gin.Context) {
 	var movies []Entity.Movie
 	var count int64
 	offset := (page - 1) * pageSize
-	fmt.Sprintf(string(offset))
 	config.GetDB().Table("tbl_movie").Count(&count)
-	config.GetDB().Offset(offset).Limit(pageSize).Find(&movies)
+	config.GetDB().Offset(offset).Limit(pageSize).Model(&Entity.Movie{}).Preload("MovieAwardRelations").Preload("Stars").Find(&movies)
 	c.JSON(http.StatusOK, gin.H{"page": response.PageResponse{Count: int(count), Data: movies}})
 }

@@ -6,5 +6,6 @@ import (
 )
 
 func InitMigration(db *gorm.DB) {
-	db.AutoMigrate(&Entity.Movie{})
+	db.AutoMigrate(&Entity.Movie{}, &Entity.Star{}, &Entity.Award{}, &Entity.MovieAwardRelation{})
+
 }
