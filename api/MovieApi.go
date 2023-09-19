@@ -6,8 +6,9 @@ import (
 )
 
 func getMovieApi(group *gin.RouterGroup) {
+	var movieService = service.MovieService{}
 	movie := group.Group("/movie")
-	movie.GET("/", service.Paginator)
-	movie.POST("/", service.Create)
+	movie.GET("/", movieService.Paginator)
+	movie.POST("/", movieService.Create)
 
 }

@@ -9,7 +9,14 @@ import (
 	"strconv"
 )
 
-func Paginator(c *gin.Context) {
+type MovieService struct {
+	//*AbstractService
+}
+
+var service = AbstractService{}
+
+func (m *MovieService) Paginator(c *gin.Context) {
+
 	var page int
 	var pageSize int
 	page, _ = strconv.Atoi(c.DefaultQuery("page", "0"))
@@ -23,17 +30,18 @@ func Paginator(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"page": response.PageResponse{Count: int(count), Data: movies}})
 }
 
-func Create(c *gin.Context) {
+func (m *MovieService) Create(c *gin.Context) {
+
 	movie := Entity.Movie{}
 	err := c.BindJSON(&movie)
+	res := service.Create(&movie)
 	if err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
-	if result := config.GetDB().Create(&movie); result.Error != nil {
-		c.AbortWithError(http.StatusBadRequest, result.Error)
+	if res.Error != nil {
+		c.AbortWithError(http.StatusInternalServerError, res.Error)
 		return
 	}
-	c.JSON(http.StatusCreated, &movie)
-
+	c.JSON(http.StatusCreated, &res)
 }
