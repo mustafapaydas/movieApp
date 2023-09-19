@@ -18,10 +18,10 @@ type AbstractService struct {
 	IAbstractService
 }
 
-var getLogic = logic.MovieLogic{}
+var _logic = logic.AbstractLogic{}
 
 func (abstract *AbstractService) Create(entity any) response.DataResponse {
-	result, err := getLogic.Create(entity)
+	result, err := _logic.Create(entity)
 	if err != nil {
 		res := response.DataResponse{Error: err, StatusCode: http.StatusCreated}
 		return res

@@ -5,7 +5,7 @@ import (
 	"movieProject/config"
 )
 
-type IMovieLogic interface {
+type IAbstractLogic interface {
 	Create(e any) response.DataResponse
 	Update()
 	GetById()
@@ -14,10 +14,10 @@ type IMovieLogic interface {
 }
 
 type AbstractLogic struct {
-	IMovieLogic
+	IAbstractLogic
 }
 
-func (m *MovieLogic) Create(entity any) (any, error) {
+func (a *AbstractLogic) Create(entity any) (any, error) {
 	if result := config.GetDB().Create(entity); result.Error != nil {
 		return nil, result.Error
 	}

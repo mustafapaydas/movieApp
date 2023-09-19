@@ -5,15 +5,17 @@ import (
 	"movieProject/common/response"
 	"movieProject/config"
 	"movieProject/data/Entity"
+	"movieProject/logic"
 	"net/http"
 	"strconv"
 )
 
 type MovieService struct {
-	//*AbstractService
+	*AbstractService
 }
 
-var service = AbstractService{}
+var movieLogic = logic.MovieLogic{}
+var _abstractService = AbstractService{}
 
 func (m *MovieService) Paginator(c *gin.Context) {
 
@@ -34,7 +36,7 @@ func (m *MovieService) Create(c *gin.Context) {
 
 	movie := Entity.Movie{}
 	err := c.BindJSON(&movie)
-	res := service.Create(&movie)
+	res := _abstractService.Create(&movie)
 	if err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
